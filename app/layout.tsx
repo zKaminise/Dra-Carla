@@ -113,6 +113,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${jakarta.variable}`}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="theme-color" content="#0D0F12" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

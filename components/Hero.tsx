@@ -14,19 +14,15 @@ export default function Hero() {
       style={{ overflow: "hidden" }}
       aria-label="Apresentação"
     >
-      {/* Background decorativo — clippado pelo overflow hidden da section */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-brand-blue-deep/30 blur-[120px]" />
-        <div className="absolute -bottom-20 right-0 w-[350px] h-[350px] rounded-full bg-brand-gold/8 blur-[100px]" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(200,164,93,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,164,93,0.3) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
+      {/* Background decorativo — gradiente CSS leve, sem blur pesado */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 60% at 15% 30%, rgba(30,52,70,0.5) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 85% 80%, rgba(200,164,93,0.06) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="container-default relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-28 md:py-36 lg:py-0 lg:min-h-screen">
@@ -145,7 +141,7 @@ export default function Hero() {
 
                 {/* Card credencial */}
                 <div className="absolute bottom-6 left-4 right-4">
-                  <div className="rounded-xl px-4 py-3.5 border border-white/20 bg-white/10 backdrop-blur-md">
+                  <div className="rounded-xl px-4 py-3.5 border border-white/20 bg-black/50">
                     <p className="font-serif text-base text-white font-light">{dentistInfo.name}</p>
                     <div className="flex items-center justify-between mt-1">
                       <p className="font-sans text-xs text-white/70">{dentistInfo.specialty}</p>

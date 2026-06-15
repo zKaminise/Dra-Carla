@@ -59,7 +59,7 @@
   }
 
   .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/60 shadow-card;
+    @apply bg-white/95 border border-white/60 shadow-card;
   }
 
   .section-title {
@@ -132,14 +132,14 @@
 .hero-anim-6 { animation: heroFadeIn   0.5s ease 0.60s both; }
 .hero-anim-photo { animation: heroFadeLeft 0.8s ease 0.15s both; }
 
-/* Animação do botão flutuante WhatsApp */
-@keyframes wpp-bounce {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-4px) scale(1.02); }
+/* Botão flutuante WhatsApp — aparece com fade simples */
+@keyframes wpp-appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .wpp-float {
-  animation: wpp-bounce 3s ease-in-out infinite;
+  animation: wpp-appear 0.4s ease 0.3s both;
 }
 
 /* Focus visible para acessibilidade */

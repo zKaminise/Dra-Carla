@@ -7,11 +7,15 @@ export default function FinalCTA() {
       className="relative section-padding bg-brand-black overflow-hidden"
       aria-labelledby="cta-final-titulo"
     >
-      {/* Decoração de fundo */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-brand-gold/5 blur-[120px]" />
-        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-brand-blue-deep/30 blur-[100px]" />
-        {/* Linha decorativa dourada horizontal */}
+      {/* Decoração de fundo — gradiente CSS, sem blur pesado */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 90% 0%, rgba(200,164,93,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 0% 100%, rgba(30,52,70,0.35) 0%, transparent 70%)",
+        }}
+      >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent" />
       </div>
 

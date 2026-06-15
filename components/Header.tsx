@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { dentistInfo, WHATSAPP_LINK } from "@/lib/data";
 
 const navLinks = [
@@ -14,6 +13,12 @@ const navLinks = [
   { href: "#duvidas", label: "Dúvidas" },
 ];
 
+const WppIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,42 +29,40 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Bloqueia scroll do body quando menu está aberto
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-brand-cream"
+            ? "bg-white/95 shadow-sm border-b border-brand-cream"
             : "bg-transparent"
         }`}
       >
         <div className="container-default">
           <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo / Nome */}
+            {/* Logo */}
             <Link
               href="#inicio"
               className="flex flex-col cursor-pointer"
               aria-label={`Ir para o início — ${dentistInfo.name}`}
             >
-              <span
-                className={`font-serif font-light text-lg md:text-xl leading-tight transition-colors duration-300 ${
-                  scrolled ? "text-brand-black" : "text-white"
-                }`}
-              >
+              <span className={`font-serif font-light text-lg md:text-xl leading-tight transition-colors duration-300 ${scrolled ? "text-brand-black" : "text-white"}`}>
                 {dentistInfo.name}
               </span>
-              <span
-                className={`font-sans text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 ${
-                  scrolled ? "text-brand-gold" : "text-brand-gold-light"
-                }`}
-              >
+              <span className={`font-sans text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 ${scrolled ? "text-brand-gold" : "text-brand-gold"}`}>
                 {dentistInfo.specialty}
               </span>
             </Link>
 
-            {/* Nav — Desktop */}
+            {/* Nav Desktop */}
             <nav className="hidden lg:flex items-center gap-7" aria-label="Navegação principal">
               {navLinks.map((link) => (
                 <a
@@ -81,15 +84,13 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Agendar avaliação pelo WhatsApp"
-                className="hidden sm:inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-white font-sans font-semibold text-xs tracking-wide px-4 py-2.5 rounded-full transition-all duration-300 cursor-pointer shadow-gold hover:shadow-lg hover:-translate-y-0.5"
+                className="hidden sm:inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-white font-sans font-semibold text-xs tracking-wide px-4 py-2.5 rounded-full transition-colors duration-200 cursor-pointer"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
+                <WppIcon />
                 Agendar pelo WhatsApp
               </a>
 
-              {/* Hamburger mobile */}
+              {/* Hamburger — CSS puro */}
               <button
                 onClick={() => setMenuOpen((v) => !v)}
                 aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
@@ -98,99 +99,75 @@ export default function Header() {
                   scrolled ? "hover:bg-brand-cream" : "hover:bg-white/10"
                 }`}
               >
-                <span
-                  className={`block w-5 h-px transition-all duration-300 origin-center ${
-                    scrolled ? "bg-brand-black" : "bg-white"
-                  } ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`}
-                />
-                <span
-                  className={`block w-5 h-px transition-all duration-300 ${
-                    scrolled ? "bg-brand-black" : "bg-white"
-                  } ${menuOpen ? "opacity-0 w-0" : ""}`}
-                />
-                <span
-                  className={`block w-5 h-px transition-all duration-300 origin-center ${
-                    scrolled ? "bg-brand-black" : "bg-white"
-                  } ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`}
-                />
+                <span className={`block w-5 h-px transition-all duration-300 origin-center ${scrolled ? "bg-brand-black" : "bg-white"} ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
+                <span className={`block w-5 h-px transition-all duration-300 ${scrolled ? "bg-brand-black" : "bg-white"} ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+                <span className={`block w-5 h-px transition-all duration-300 origin-center ${scrolled ? "bg-brand-black" : "bg-white"} ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.div
-              className="fixed inset-0 z-30 bg-brand-black/60 backdrop-blur-sm lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {/* Overlay — CSS puro, sem Framer Motion */}
+      <div
+        className={`fixed inset-0 z-30 bg-brand-black/60 lg:hidden transition-opacity duration-300 ${
+          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
+
+      {/* Drawer lateral — CSS puro */}
+      <nav
+        aria-label="Menu mobile"
+        aria-hidden={!menuOpen}
+        className={`fixed top-0 right-0 bottom-0 z-40 w-72 bg-white shadow-deep lg:hidden flex flex-col transition-transform duration-300 ease-in-out ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between p-5 border-b border-brand-cream">
+          <div>
+            <p className="font-serif font-light text-base text-brand-black">{dentistInfo.name}</p>
+            <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-brand-gold">{dentistInfo.specialty}</p>
+          </div>
+          <button
+            onClick={closeMenu}
+            aria-label="Fechar menu"
+            className="p-2 cursor-pointer rounded-md hover:bg-brand-cream transition-colors"
+          >
+            <svg viewBox="0 0 24 24" className="w-5 h-5 text-brand-black" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-1 p-4 flex-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
               onClick={closeMenu}
-            />
-            <motion.nav
-              aria-label="Menu mobile"
-              className="fixed top-0 right-0 bottom-0 z-40 w-72 bg-white shadow-deep lg:hidden flex flex-col"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+              className="font-sans text-sm font-medium text-brand-gray-text hover:text-brand-black hover:bg-brand-cream px-3 py-3 rounded-lg transition-colors duration-200 cursor-pointer"
             >
-              <div className="flex items-center justify-between p-5 border-b border-brand-cream">
-                <div>
-                  <p className="font-serif font-light text-base text-brand-black">{dentistInfo.name}</p>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-brand-gold">
-                    {dentistInfo.specialty}
-                  </p>
-                </div>
-                <button
-                  onClick={closeMenu}
-                  aria-label="Fechar menu"
-                  className="p-2 cursor-pointer rounded-md hover:bg-brand-cream transition-colors"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 text-brand-black" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
+              {link.label}
+            </a>
+          ))}
+        </div>
 
-              <div className="flex flex-col gap-1 p-4 flex-1">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={closeMenu}
-                    className="font-sans text-sm font-medium text-brand-gray-text hover:text-brand-black hover:bg-brand-cream px-3 py-3 rounded-lg transition-colors duration-200 cursor-pointer"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04 + 0.1 }}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-
-              <div className="p-4 border-t border-brand-cream">
-                <a
-                  href={WHATSAPP_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={closeMenu}
-                  className="flex items-center justify-center gap-2.5 w-full bg-brand-gold hover:bg-brand-gold-dark text-white font-sans font-semibold text-sm py-3.5 rounded-full transition-all duration-300 cursor-pointer"
-                  aria-label="Agendar avaliação pelo WhatsApp"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
-                  Agendar avaliação
-                </a>
-              </div>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
+        <div className="p-4 border-t border-brand-cream">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="flex items-center justify-center gap-2.5 w-full bg-brand-gold hover:bg-brand-gold-dark text-white font-sans font-semibold text-sm py-3.5 rounded-full transition-colors duration-200 cursor-pointer"
+            aria-label="Agendar avaliação pelo WhatsApp"
+          >
+            <WppIcon />
+            Agendar avaliação
+          </a>
+        </div>
+      </nav>
     </>
   );
 }
