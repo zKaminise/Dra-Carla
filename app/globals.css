@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-brand-black: #0D0F12;
+    --color-brand-cream: #F7F3EC;
+    --color-brand-gold: #C8A45D;
+    --color-brand-blue-clinical: #DCECF6;
+    --color-brand-blue-deep: #1E3446;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-brand-offwhite text-brand-black antialiased;
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(200, 164, 93, 0.2);
+    color: #0D0F12;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .container-default {
+    @apply max-w-7xl mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 bg-brand-gold hover:bg-brand-gold-dark text-white font-sans font-semibold text-sm tracking-wide px-6 py-3.5 rounded-full transition-all duration-300 cursor-pointer shadow-gold hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2.5 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white font-sans font-semibold text-sm tracking-wide px-6 py-3.5 rounded-full transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-brand-gray-text hover:text-brand-black font-sans font-medium text-sm transition-colors duration-200 cursor-pointer;
+  }
+
+  .gold-line {
+    @apply w-12 h-px bg-brand-gold;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/60 shadow-card;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-light text-brand-black leading-tight tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply font-sans text-base md:text-lg text-brand-gray-text leading-relaxed max-w-2xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #C8A45D 0%, #D7B56D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gold-border-top {
+    border-top: 1px solid rgba(200, 164, 93, 0.3);
+  }
+
+  .gold-border-bottom {
+    border-bottom: 1px solid rgba(200, 164, 93, 0.3);
+  }
+}
+
+/* Scrollbar elegante */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 164, 93, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 164, 93, 0.7);
+}
+
+/* Animação do botão flutuante WhatsApp */
+@keyframes wpp-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+}
+
+.wpp-float {
+  animation: wpp-bounce 3s ease-in-out infinite;
+}
+
+/* Focus visible para acessibilidade */
+:focus-visible {
+  outline: 2px solid #C8A45D;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
