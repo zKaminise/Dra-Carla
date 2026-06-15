@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { dentistInfo, WHATSAPP_LINK } from "@/lib/data";
 
 const badges = [
@@ -13,15 +10,14 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center overflow-hidden bg-brand-black"
+      className="relative min-h-screen flex items-center bg-brand-black"
+      style={{ overflow: "hidden" }}
       aria-label="Apresentação"
     >
-      {/* Background gradiente e blur circles decorativos */}
+      {/* Background decorativo — clippado pelo overflow hidden da section */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-brand-blue-deep/30 blur-[120px]" />
-        <div className="absolute -bottom-20 right-1/4 w-[400px] h-[400px] rounded-full bg-brand-gold/8 blur-[100px]" />
-        <div className="absolute top-1/2 -translate-y-1/2 left-1/3 w-[300px] h-[300px] rounded-full bg-brand-blue-clinical/5 blur-[80px]" />
-        {/* Grade sutil */}
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-brand-blue-deep/30 blur-[120px]" />
+        <div className="absolute -bottom-20 right-0 w-[350px] h-[350px] rounded-full bg-brand-gold/8 blur-[100px]" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -38,69 +34,45 @@ export default function Hero() {
           {/* Coluna esquerda — Texto */}
           <div className="flex flex-col gap-8 order-2 lg:order-1">
 
-            {/* Credencial discreta */}
-            <motion.div
-              className="flex items-center gap-3"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
+            {/* Credencial */}
+            <div className="hero-anim-1 flex items-center gap-3">
               <div className="w-8 h-px bg-brand-gold" />
               <span className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold">
                 {dentistInfo.cro}
               </span>
-            </motion.div>
+            </div>
 
-            {/* Headline principal */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
+            {/* Headline */}
+            <div className="hero-anim-2">
               <h1 className="font-serif font-light text-white leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] text-balance">
                 Cuidado odontológico com{" "}
                 <em className="not-italic gradient-text-gold">precisão,</em>{" "}
                 estética e acolhimento.
               </h1>
-            </motion.div>
+            </div>
 
             {/* Subtítulo */}
-            <motion.p
-              className="font-sans text-base md:text-lg text-white/65 leading-relaxed max-w-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35 }}
-            >
+            <p className="hero-anim-3 font-sans text-base md:text-lg text-white/65 leading-relaxed max-w-lg">
               Atendimento conduzido por{" "}
               <span className="text-white/85 font-medium">{dentistInfo.name}</span>,
               cirurgiã-dentista em {dentistInfo.city}, com foco em saúde bucal,
               planejamento individualizado e uma experiência tranquila do início ao fim.
-            </motion.p>
+            </p>
 
-            {/* Badges de confiança */}
-            <motion.div
-              className="flex flex-wrap gap-2"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.45 }}
-            >
+            {/* Badges */}
+            <div className="hero-anim-4 flex flex-wrap gap-2">
               {badges.map((badge) => (
                 <span
                   key={badge}
-                  className="font-sans text-xs font-medium text-white/70 bg-white/8 border border-white/12 px-3.5 py-1.5 rounded-full backdrop-blur-sm"
+                  className="font-sans text-xs font-medium text-white/70 bg-white/8 border border-white/12 px-3.5 py-1.5 rounded-full"
                 >
                   {badge}
                 </span>
               ))}
-            </motion.div>
+            </div>
 
             {/* CTAs */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
-            >
+            <div className="hero-anim-5 flex flex-col sm:flex-row gap-3">
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
@@ -124,15 +96,10 @@ export default function Hero() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </a>
-            </motion.div>
+            </div>
 
-            {/* Prova de confiança — linha discreta */}
-            <motion.div
-              className="flex flex-wrap items-center gap-4 pt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
+            {/* Prova de confiança */}
+            <div className="hero-anim-6 flex flex-wrap items-center gap-4 pt-2">
               <div className="flex items-center gap-2 text-white/50">
                 <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0 text-brand-gold" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -154,87 +121,51 @@ export default function Hero() {
                 </svg>
                 <span className="font-sans text-xs">Com hora marcada</span>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Coluna direita — Foto da dentista */}
-          <motion.div
-            className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            {/* Moldura decorativa dourada */}
+          {/* Coluna direita — Foto */}
+          <div className="hero-anim-photo relative order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="relative">
-              {/* Linha dourada decorativa superior */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 border-t border-r border-brand-gold/40 rounded-tr-2xl z-10" aria-hidden="true" />
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b border-l border-brand-gold/40 rounded-bl-2xl z-10" aria-hidden="true" />
+              {/* Linhas decorativas douradas */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 border-t border-r border-brand-gold/40 rounded-tr-2xl z-10" aria-hidden="true" />
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 border-b border-l border-brand-gold/40 rounded-bl-2xl z-10" aria-hidden="true" />
 
               {/* Container da foto */}
-              <div className="relative w-[320px] sm:w-[380px] lg:w-[420px] xl:w-[480px] h-[440px] sm:h-[520px] lg:h-[580px] xl:h-[640px] rounded-2xl overflow-hidden">
-                {/*
-                  FOTO DA DENTISTA:
-                  Coloque o arquivo da foto em /public/foto-dentista.png
-                  (ou .png, .webp etc.) e ajuste o nome abaixo.
-                */}
+              <div className="relative w-[280px] sm:w-[340px] lg:w-[400px] xl:w-[460px] h-[400px] sm:h-[480px] lg:h-[540px] xl:h-[600px] rounded-2xl overflow-hidden">
                 <Image
                   src="/foto-dentista.png"
                   alt={`${dentistInfo.name}, Cirurgiã-Dentista em ${dentistInfo.city}`}
                   fill
                   priority
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 480px"
+                  sizes="(max-width: 640px) 280px, (max-width: 1024px) 340px, 460px"
                   className="object-cover object-top"
-                  style={{ objectPosition: "center top" }}
                 />
-                {/* Overlay gradient sutil na parte inferior */}
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/60 via-transparent to-transparent" />
 
-                {/* Card flutuante — credencial */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="glass-card rounded-xl px-4 py-3.5 border border-white/20 bg-white/10 backdrop-blur-md">
+                {/* Card credencial */}
+                <div className="absolute bottom-6 left-4 right-4">
+                  <div className="rounded-xl px-4 py-3.5 border border-white/20 bg-white/10 backdrop-blur-md">
                     <p className="font-serif text-base text-white font-light">{dentistInfo.name}</p>
                     <div className="flex items-center justify-between mt-1">
                       <p className="font-sans text-xs text-white/70">{dentistInfo.specialty}</p>
-                      <span className="font-sans text-[10px] text-brand-gold-light uppercase tracking-wider">{dentistInfo.cro}</span>
+                      <span className="font-sans text-[10px] text-brand-gold uppercase tracking-wider">{dentistInfo.cro}</span>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Badge flutuante 
-              <motion.div
-                className="absolute -right-5 top-1/3 bg-brand-blue-clinical/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-deep hidden lg:block"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                aria-hidden="true"
-              >
-                <p className="font-sans text-xs text-brand-blue-deep font-semibold">Atendimento</p>
-                <p className="font-sans text-xs text-brand-blue-deep/70">com hora marcada</p>
-              </motion.div>*/}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Seta scroll */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        aria-hidden="true"
-      >
+      {/* Seta scroll — apenas desktop */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 hero-anim-6" aria-hidden="true">
         <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-white/30">Rolar</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <svg viewBox="0 0 24 24" className="w-4 h-4 text-white/30" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </motion.div>
-      </motion.div>
+        <svg viewBox="0 0 24 24" className="w-4 h-4 text-white/30" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </div>
     </section>
   );
 }
