@@ -51,7 +51,7 @@ export default function MotionReveal({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, amount: 0.1 }}
       variants={variants}
     >
       {children}
