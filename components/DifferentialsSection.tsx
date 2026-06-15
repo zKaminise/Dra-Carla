@@ -9,7 +9,7 @@ export default function DifferentialsSection() {
       aria-labelledby="diferenciais-titulo"
     >
       <div className="container-default">
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-8">
           <SectionTitle
             eyebrow="Diferenciais"
             title="Um atendimento pensado para sua segurança e conforto"

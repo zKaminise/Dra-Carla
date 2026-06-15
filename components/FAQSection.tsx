@@ -97,7 +97,7 @@ export default function FAQSection() {
       aria-labelledby="faq-titulo"
     >
       <div className="container-default">
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
 
           {/* Texto lateral */}
           <div className="lg:col-span-2 flex flex-col gap-6">

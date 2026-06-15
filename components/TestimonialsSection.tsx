@@ -34,7 +34,7 @@ export default function TestimonialsSection() {
       aria-labelledby="depoimentos-titulo"
     >
       <div className="container-default">
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-8">
           <SectionTitle
             eyebrow="Depoimentos"
             title="O que os pacientes dizem"

@@ -10,7 +10,7 @@ export default function InsuranceSection() {
       aria-labelledby="convenios-titulo"
     >
       <div className="container-default">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
           {/* Texto */}
           <div className="flex flex-col gap-8">

@@ -18,7 +18,7 @@ export default function AboutDentist() {
       aria-labelledby="sobre-titulo"
     >
       <div className="container-default">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
           {/* Foto secundária */}
           <MotionReveal direction="left" className="relative">

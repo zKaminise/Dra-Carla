@@ -11,7 +11,7 @@ export default function ServicesSection() {
       aria-labelledby="tratamentos-titulo"
     >
       <div className="container-default">
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-8">
 
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <SectionTitle

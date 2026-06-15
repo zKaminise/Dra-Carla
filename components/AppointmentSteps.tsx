@@ -15,7 +15,7 @@ export default function AppointmentSteps() {
       </div>
 
       <div className="container-default relative z-10">
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col gap-10">
           <div className="flex flex-col items-center text-center gap-4">
             <SectionTitle
               eyebrow="Como funciona"

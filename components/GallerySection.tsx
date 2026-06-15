@@ -27,7 +27,7 @@ export default function GallerySection() {
       aria-labelledby="galeria-titulo"
     >
       <div className="container-default">
-        <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-8">
           <SectionTitle
             eyebrow="Estrutura"
             title="Um ambiente preparado para cuidar de você"
